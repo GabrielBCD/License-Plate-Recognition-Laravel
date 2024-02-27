@@ -15,7 +15,8 @@
                 <input type="password" name="password" class="form-control" id="floatingPassword">
                 <label for="floatingPassword">Senha</label>
             </div>
-            <button type="submit" class="btn btn-dark w-100">Entrar</button>
+            <button type="submit" class="btn btn-dark w-100 mb-3">Entrar</button>
+            <p class="text-center w-100 ">Não possui cadastro? <a href="/register">Clique aqui.</a> </p>
         </form>
     </div>
 @endsection

@@ -14,10 +14,7 @@ class ViewsController extends Controller
         return view('login');
     }
 
-    public function teste(){
-
-
-
-        return view('teste');
+    public function register(){
+        return view('register');
     }
 }

@@ -44,7 +44,7 @@
                         </div>
                     </div>
                     <div class="col col-12 d-flex justify-content-end">
-                        <a type="submit" class="btn btn-light" href="/predictions">Exibir Todos</a>
+                        <a class="btn btn-light" href="/predictions">Exibir Todos</a>
                         <button type="submit" class="btn btn-dark" name="search">Pesquisar</button>
                     </div>
                 </div>
