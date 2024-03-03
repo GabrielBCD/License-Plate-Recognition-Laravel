@@ -7,9 +7,8 @@ use Illuminate\Database\Eloquent\Model;
 
 class Predictions extends Model
 {
-    protected $fillable = [
-      'plate', 'vehicle', 'type', 'date', 'photo'
-    ];
-
     use HasFactory;
+    protected $fillable = [
+        'plate', 'vehicle', 'type', 'date', 'photo'
+    ];
 }
