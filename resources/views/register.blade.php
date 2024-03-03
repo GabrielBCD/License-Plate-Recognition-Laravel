@@ -1,4 +1,4 @@
-@extends('layout.main')
+@extends('main')
 
 @section('title' , 'Register')
 

@@ -6,37 +6,58 @@ use Illuminate\Http\Request;
 use App\Models\Predictions;
 class PredictionsController extends Controller
 {
-    public function predictions(Request $request): \Illuminate\Contracts\View\View|\Illuminate\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\Foundation\Application
+
+
+    public function predictions()
     {
-        $plate = $request->input('search_plate');
-        $type = $request->input('search_type');
-        $date = $request->input('search_date');
-        $vehicle = $request->input('search_vehicle');
+        $predicts = Predictions::paginate(10);
+
+        return view('predictions', ['predictions' => $predicts,
+            'search_plate' => "",
+            'search_type' => "",
+            'search_date' => "",
+            'search_vehicle' => ""]);
+    }
+
+    public function search(Request $request)
+    {
+        $search_plate = $request->input('search_plate');
+        $search_type = $request->input('search_type');
+        $search_date = $request->input('search_date');
+        $search_vehicle = $request->input('search_vehicle');
 
         $query = Predictions::query();
 
-        if ($vehicle) {
-            $query->where('vehicle', $vehicle);
+        if ($search_vehicle) {
+            $query->where('vehicle', $search_vehicle);
         }
 
-        if ($plate) {
-            $query->where('plate', $plate);
+        if ($search_plate) {
+            $query->where('plate', $search_plate);
         }
 
-        if ($type) {
-            $query->where('type', $type);
+        if ($search_type) {
+            $query->where('type', $search_type);
         }
 
-        if ($date) {
-            $query->whereDate('date', $date);
+        if ($search_date) {
+            $query->whereDate('date', $search_date);
         }
 
-        $predicts = $query->get();
+        $predicts = $query->paginate(10);
 
         return view('predictions', ['predictions' => $predicts,
-        'search_plate' => $plate,
-        'search_type' => $type,
-        'search_date' => $date,
-        'search_vehicle' => $vehicle]);
+            'search_plate' => $search_plate,
+            'search_type' => $search_type,
+            'search_date' => $search_date,
+            'search_vehicle' => $search_vehicle]);
+    }
+
+    public function update(Request $request, $id)
+    {
+        $prediction = Predictions::findOrFail($id);
+        $prediction->plate = $request->input('plate');
+        $prediction->save();
+        return redirect()->back();
     }
 }

@@ -20,5 +20,8 @@ use App\Http\Controllers\LoginController;
 
 Route::get('/', [ViewsController::class, 'index']);
 Route::get('/login', [ViewsController::class, 'login']);
-Route::get('/predictions', [PredictionsController::class, 'predictions']);
 Route::get('/register', [ViewsController::class, 'register']);
+Route::get('/predictions', [PredictionsController::class, 'predictions']);
+Route::get('/predictions/search', [PredictionsController::class, 'search']);
+Route::put('/predictions/{id}/update', [PredictionsController::class, 'update']);
+
