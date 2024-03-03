@@ -3,7 +3,7 @@
 @section('title' , 'Register')
 
 @section('content')
-    <div style="max-width: 540px" class="p-5 m-auto shadow rounded">
+    <div class="p-5 m-auto shadow rounded register">
         <p class="text-center fs-2">Registro</p>
         <form action="/register" method="get">
             <div class="form-floating mb-3">

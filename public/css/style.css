@@ -1,3 +1,34 @@
+/* Main */
+body {
+    background-color: #f6f6f6;
+}
+
+.panel, .table-plates{
+    background-color: white;
+}
+
 footer{
     background-color: #212529
+}
+
+/* Login */
+
+.login{
+    max-width: 540px;
+}
+
+/* Register */
+
+.register{
+    max-width: 540px
+}
+/* Predictions */
+
+.predictions{
+    min-height: 800px;
+}
+
+.predictions-table-input{
+    display: none;
+    margin: auto;
 }

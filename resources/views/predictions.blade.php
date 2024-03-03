@@ -3,9 +3,9 @@
 @section('title' , 'Panel')
 
 @section('content')
-    <div class="" style="min-height: 800px">
-        <div class="rounded shadow mb-5 p-4">
-            <h1 class="mb-3 p-3">Painel de Controle</h1>
+    <div class="predictions">
+        <div class="rounded shadow mb-5 p-4 panel">
+            <p class="mb-3 p-3 fs-2">Painel de Controle</p>
             <form action="/predictions/search" method="GET">
                 @csrf
                 <div class="row m-0">
@@ -54,16 +54,16 @@
                 </div>
             </form>
         </div>
-        <div class="">
+        <div class="table-plates p-3 rounded shadow">
             <table class="table table-sm table-light table-striped text-lg-center">
                 <thead>
                 <tr>
                     <th scope="col">#</th>
-                    <th scope="col">Plate</th>
-                    <th scope="col">Vehicle</th>
-                    <th scope="col">Type</th>
-                    <th scope="col">Date</th>
-                    <th scope="col">Photo</th>
+                    <th scope="col">Placa</th>
+                    <th scope="col">Veiculo</th>
+                    <th scope="col">Tipo</th>
+                    <th scope="col">Data</th>
+                    <th scope="col">Foto</th>
                     <th scope="col"></th>
                 </tr>
                 </thead>
@@ -76,8 +76,8 @@
                             <th scope="row">{{$predict->id}}</th>
                             <td>
                                 <span class="editable" data-field="plate">{{$predict->plate}}</span>
-                                <input type="text" name="plate" class="form-control"
-                                       style="display:none; max-width: 100px; margin: auto" data-field="plate"
+                                <input type="text" name="plate" class="form-control predictions-table-input m-auto"
+                                       data-field="plate"
                                        value="{{$predict->plate}}">
                             </td>
                             <td>{{$predict->vehicle}}</td>

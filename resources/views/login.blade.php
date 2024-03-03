@@ -4,7 +4,7 @@
 
 @section('content')
     <div class="reg-log">
-        <div style="max-width: 540px" class="p-5 m-auto shadow rounded">
+        <div class="p-5 m-auto shadow rounded login">
             <p class="text-center fs-2">Login</p>
             <form action="/login" method="get">
                 @csrf
