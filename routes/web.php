@@ -16,12 +16,23 @@ use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\ViewsController;
 use App\Http\Controllers\PredictionsController;
-use App\Http\Controllers\LoginController;
 
-Route::get('/', [ViewsController::class, 'index']);
-Route::get('/login', [ViewsController::class, 'login']);
-Route::get('/register', [ViewsController::class, 'register']);
 Route::get('/predictions', [PredictionsController::class, 'predictions']);
-Route::get('/predictions/search', [PredictionsController::class, 'search']);
-Route::put('/predictions/{id}/update', [PredictionsController::class, 'update']);
 
+
+
+Route::middleware([
+    'auth:sanctum',
+    config('jetstream.auth_session'),
+    'verified',
+])->group(function () {
+    Route::get('/', [PredictionsController::class, 'search'])->name('dashboard');
+    Route::get('/dashboard', [PredictionsController::class, 'search'])->name('dashboard');
+    Route::get('/dashboard/search', [PredictionsController::class, 'search']);
+    Route::put('/dashboard/update/{id}', [PredictionsController::class, 'update']);
+
+    Route::get('/log', function () {
+        return view('log');
+    })->name('log');
+
+});

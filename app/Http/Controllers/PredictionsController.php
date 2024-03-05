@@ -12,7 +12,7 @@ class PredictionsController extends Controller
     {
         $predicts = Predictions::paginate(10);
 
-        return view('predictions', ['predictions' => $predicts,
+        return view('dashboard', ['predictions' => $predicts,
             'search_plate' => "",
             'search_type' => "",
             'search_date' => "",
@@ -46,7 +46,7 @@ class PredictionsController extends Controller
 
         $predicts = $query->paginate(10);
 
-        return view('predictions', ['predictions' => $predicts,
+        return view('dashboard', ['predictions' => $predicts,
             'search_plate' => $search_plate,
             'search_type' => $search_type,
             'search_date' => $search_date,
