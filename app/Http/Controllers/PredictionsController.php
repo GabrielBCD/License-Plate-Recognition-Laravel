@@ -6,8 +6,6 @@ use Illuminate\Http\Request;
 use App\Models\Predictions;
 class PredictionsController extends Controller
 {
-
-
     public function predictions()
     {
         $predicts = Predictions::paginate(10);

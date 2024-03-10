@@ -40,7 +40,8 @@
                                             <option value="">Selecione um Veículo</option>
                                             <option value="Carro" {{$search_vehicle == "Carro" ? 'selected' : ''}}>Carro
                                             </option>
-                                            <option value="Moto" {{$search_vehicle == "Moto" ? 'selected' : ''}}>Moto</option>
+                                            <option value="Moto" {{$search_vehicle == "Moto" ? 'selected' : ''}}>Moto
+                                            </option>
                                         </select>
                                     </div>
                                     <div class="input-group mb-2">
@@ -56,15 +57,14 @@
                             </div>
                         </div>
                     </form>
-                    <table class="table table-sm table-light table-striped text-lg-center">
+                    <table class="table table-sm">
                         <thead>
                         <tr>
-                            <th scope="col">#</th>
                             <th scope="col">Placa</th>
                             <th scope="col">Veiculo</th>
                             <th scope="col">Tipo</th>
                             <th scope="col">Data</th>
-                            <th scope="col">Foto</th>
+                            <th scope="col">Visualizar</th>
                             <th scope="col"></th>
                         </tr>
                         </thead>
@@ -74,12 +74,8 @@
                                 @csrf
                                 @method('PUT')
                                 <tr>
-                                    <th scope="row">{{$predict->id}}</th>
                                     <td>
                                         <span class="editable" data-field="plate">{{$predict->plate}}</span>
-                                        <input type="text" name="plate" class="form-control predictions-table-input m-auto"
-                                               data-field="plate"
-                                               value="{{$predict->plate}}">
                                     </td>
                                     <td>{{$predict->vehicle}}</td>
                                     <td>{{$predict->type}}</td>
@@ -101,21 +97,28 @@
                                                                 aria-label="Close"></button>
                                                     </div>
                                                     <div class="modal-body">
-                                                        IMAGEM AQUI
+                                                        <div class="">
+                                                            <input type="text" name="plate" class="form-control m-auto"
+                                                                   data-field="plate"
+                                                                   value="{{$predict->plate}}">
+                                                        </div>
+                                                        <div>
+                                                            IMAGEM AQUI
+                                                            <img src="" alt="">
+                                                        </div>
                                                     </div>
                                                     <div class="modal-footer">
-                                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
-                                                            Close
+                                                        <button type="submit" class="save-btn btn btn-success">
+                                                            Salvar
+                                                        </button>
+                                                        <button type="button" class="btn btn-secondary"
+                                                                data-bs-dismiss="modal">
+                                                            Fechar
                                                         </button>
                                                     </div>
                                                 </div>
                                             </div>
                                         </div>
-
-                                    </td>
-                                    <td>
-                                        <button type="button" class="edit-btn btn btn-primary">Editar</button>
-                                        <button type="submit" class="save-btn btn btn-success" style="display: none;">Salvar</button>
                                     </td>
                                 </tr>
                             </form>

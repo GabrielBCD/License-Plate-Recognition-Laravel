@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Predictions;
+use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Http\Request;
 
 class ApiController extends Controller
@@ -12,7 +13,12 @@ class ApiController extends Controller
      */
     public function index()
     {
-        return Predictions::all();
+        try {
+            $predictions = Predictions::all();
+            return response()->json($predictions, 200);
+        } catch (\Exception $e) {
+            return response()->json(['error' => 'Failed to retrieve predictions.'], 500);
+        }
     }
 
     /**
@@ -28,7 +34,12 @@ class ApiController extends Controller
      */
     public function store(Request $request)
     {
-        Predictions::create($request->all());
+        try {
+            $prediction = Predictions::create($request->all());
+            return response()->json($prediction, 201);
+        } catch (\Exception $e) {
+            return response()->json(['error' => 'Failed to store prediction.'], 500);
+        }
     }
 
     /**
@@ -36,7 +47,14 @@ class ApiController extends Controller
      */
     public function show(string $id)
     {
-        return Predictions::findOrFail($id);
+        try {
+            $prediction = Predictions::findOrFail($id);
+            return response()->json($prediction, 200);
+        } catch (ModelNotFoundException $e) {
+            return response()->json(['error' => 'Prediction not found.'], 404);
+        } catch (\Exception $e) {
+            return response()->json(['error' => 'Failed to retrieve prediction.'], 500);
+        }
     }
 
     /**
