@@ -26,8 +26,11 @@
                                         <label class="input-group-text w-25" for="search_type">Tipo</label>
                                         <select class="form-select" id="search_type" name="search_type">
                                             <option value="">Selecione um Tipo</option>
-                                            <option value="E" {{$search_type == "E" ? 'selected' : ''}}>Entrada</option>
-                                            <option value="S" {{$search_type == "S" ? 'selected' : ''}}>Saída</option>
+                                            <option value="Entrada" {{$search_type == "Entrada" ? 'selected' : ''}}>
+                                                Entrada
+                                            </option>
+                                            <option value="Saída" {{$search_type == "Saída" ? 'selected' : ''}}>Saída
+                                            </option>
                                         </select>
                                     </div>
                                 </div>
@@ -45,9 +48,15 @@
                                         </select>
                                     </div>
                                     <div class="input-group mb-2">
-                                        <label class="input-group-text w-25" for="search_date">Data</label>
-                                        <input class="form-control" type="date" id="search_date" name="search_date"
-                                               min="2018-01-01" max="2030-12-31" value="{{$search_date}}"/>
+                                        <label class="input-group-text w-14" for="search_start_date">Data</label>
+                                        <input class="form-control" type="date" id="search_start_date"
+                                               name="search_start_date"
+                                               min="2018-01-01" max="2030-12-31" value="{{$search_start_date}}"/>
+
+                                        <label class="input-group-text w-14" for="search_end_date">Data</label>
+                                        <input class="form-control" type="date" id="search_end_date"
+                                               name="search_end_date"
+                                               min="2018-01-01" max="2030-12-31" value="{{$search_end_date}}"/>
                                     </div>
                                 </div>
                             </div>
@@ -96,26 +105,24 @@
                                                         <button type="button" class="btn-close" data-bs-dismiss="modal"
                                                                 aria-label="Close"></button>
                                                     </div>
-                                                    <div class="modal-body">
-                                                        <div class="">
-                                                            <input type="text" name="plate" class="form-control m-auto"
+                                                    <form onsubmit="return validateForm()" action="">
+                                                        <div class="modal-body">
+                                                            <input type="text" name="plate"
+                                                                   class="form-control m-auto"
                                                                    data-field="plate"
                                                                    value="{{$predict->plate}}">
-                                                        </div>
-                                                        <div>
                                                             IMAGEM AQUI
-                                                            <img src="" alt="">
                                                         </div>
-                                                    </div>
-                                                    <div class="modal-footer">
-                                                        <button type="submit" class="save-btn btn btn-success">
-                                                            Salvar
-                                                        </button>
-                                                        <button type="button" class="btn btn-secondary"
-                                                                data-bs-dismiss="modal">
-                                                            Fechar
-                                                        </button>
-                                                    </div>
+                                                        <div class="modal-footer">
+                                                            <button type="submit" class="save-btn btn btn-success">
+                                                                Salvar
+                                                            </button>
+                                                            <button type="button" class="btn btn-secondary"
+                                                                    data-bs-dismiss="modal">
+                                                                Fechar
+                                                            </button>
+                                                        </div>
+                                                    </form>
                                                 </div>
                                             </div>
                                         </div>
@@ -125,7 +132,7 @@
                         @endforeach
                         </tbody>
                     </table>
-                    {{$predictions->links()}}
+                    {{ $predictions->appends(request()->all())->links() }}
                 </div>
             </div>
         </div>

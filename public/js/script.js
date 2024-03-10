@@ -7,3 +7,12 @@ plateInput.addEventListener('input', function () {
 vehicleInput.addEventListener('input', function () {
     plateInput.disabled = !!this.value;
 });
+
+function validateForm() {
+    var plateInput = document.getElementsByName('plate');
+    if (plateInput.value.trim() === '') {
+        console.log('Por favor, preencha o campo da placa.');
+        return false;
+    }
+    return true;
+}

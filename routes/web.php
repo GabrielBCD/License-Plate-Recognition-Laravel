@@ -26,9 +26,9 @@ Route::middleware([
     config('jetstream.auth_session'),
     'verified',
 ])->group(function () {
-    Route::get('/', [PredictionsController::class, 'search'])->name('dashboard');
-    Route::get('/dashboard', [PredictionsController::class, 'search'])->name('dashboard');
-    Route::get('/dashboard/search', [PredictionsController::class, 'search']);
+    Route::get('/', [PredictionsController::class, 'predictions'])->name('dashboard');
+    Route::get('/dashboard', [PredictionsController::class, 'predictions'])->name('dashboard');
+    Route::get('/dashboard/search', [PredictionsController::class, 'search'])->name('search');
     Route::put('/dashboard/update/{id}', [PredictionsController::class, 'update']);
 
     Route::get('/log', function () {
