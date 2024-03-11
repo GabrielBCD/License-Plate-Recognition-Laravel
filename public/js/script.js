@@ -8,11 +8,15 @@ vehicleInput.addEventListener('input', function () {
     plateInput.disabled = !!this.value;
 });
 
-function validateForm() {
-    var plateInput = document.getElementsByName('plate');
-    if (plateInput.value.trim() === '') {
-        console.log('Por favor, preencha o campo da placa.');
-        return false;
-    }
-    return true;
-}
+document.addEventListener('DOMContentLoaded', function () {
+    const inputPlate = document.querySelector('input[name="plate"]');
+    const btnSave = document.querySelector('button[name="button-salvar"]');
+
+    inputPlate.addEventListener('input', function () {
+        if (inputPlate.value.trim() === '') {
+            btnSave.disabled = true;
+        } else {
+            btnSave.disabled = false;
+        }
+    });
+});

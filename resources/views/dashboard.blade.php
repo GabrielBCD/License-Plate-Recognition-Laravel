@@ -105,7 +105,7 @@
                                                         <button type="button" class="btn-close" data-bs-dismiss="modal"
                                                                 aria-label="Close"></button>
                                                     </div>
-                                                    <form onsubmit="return validateForm()" action="">
+                                                    <form action="">
                                                         <div class="modal-body">
                                                             <input type="text" name="plate"
                                                                    class="form-control m-auto"
@@ -114,7 +114,7 @@
                                                             IMAGEM AQUI
                                                         </div>
                                                         <div class="modal-footer">
-                                                            <button type="submit" class="save-btn btn btn-success">
+                                                            <button name="button-salvar" type="submit" class="save-btn btn btn-success">
                                                                 Salvar
                                                             </button>
                                                             <button type="button" class="btn btn-secondary"
