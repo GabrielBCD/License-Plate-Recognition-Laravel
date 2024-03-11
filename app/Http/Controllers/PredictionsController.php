@@ -61,9 +61,13 @@ class PredictionsController extends Controller
 
     public function update(Request $request, $id)
     {
-        $prediction = Predictions::findOrFail($id);
-        $prediction->plate = $request->input('plate');
-        $prediction->save();
-        return redirect()->back();
+        try {
+            $prediction = Predictions::findOrFail($id);
+            $prediction->plate = $request->input('plate');
+            $prediction->save();
+            return redirect()->back();
+        } catch (\Exception $e) {
+            return redirect()->back();
+        }
     }
 }
