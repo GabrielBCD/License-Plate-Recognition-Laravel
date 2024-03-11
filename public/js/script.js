@@ -9,14 +9,14 @@ vehicleInput.addEventListener('input', function () {
 });
 
 document.addEventListener('DOMContentLoaded', function () {
-    const inputPlate = document.querySelector('input[name="plate"]');
-    const btnSave = document.querySelector('button[name="button-salvar"]');
+    const modals = document.querySelectorAll('.modal');
 
-    inputPlate.addEventListener('input', function () {
-        if (inputPlate.value.trim() === '') {
-            btnSave.disabled = true;
-        } else {
-            btnSave.disabled = false;
-        }
+    modals.forEach(function (modal) {
+        const inputPlate = modal.querySelector('input[name="plate"]');
+        const btnSave = modal.querySelector('button[name="button-salvar"]');
+
+        inputPlate.addEventListener('input', function () {
+            btnSave.disabled = inputPlate.value.trim() === '';
+        });
     });
 });
