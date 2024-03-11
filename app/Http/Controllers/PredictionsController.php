@@ -31,7 +31,7 @@ class PredictionsController extends Controller
 
         if ($search_start_date && $search_end_date) {
             if ($search_start_date == $search_end_date){
-                $query->where('date', $search_start_date);
+                $query->whereDate('date', $search_start_date);
             } else {
                 if (strtotime($search_start_date) && strtotime($search_end_date)) {
                     $query->whereBetween('date', [$search_start_date, $search_end_date]);
