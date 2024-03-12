@@ -20,3 +20,16 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     });
 });
+
+
+document.addEventListener('DOMContentLoaded', function () {
+    const startDateInput = document.getElementById('search_start_date');
+    const endDateInput = document.getElementById('search_end_date');
+
+    startDateInput.addEventListener('input', function() {
+        endDateInput.value = startDateInput.value;
+    });
+
+    endDateInput.addEventListener('input', function() {
+    });
+});
