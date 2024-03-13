@@ -48,12 +48,13 @@
                                         </select>
                                     </div>
                                     <div class="input-group mb-2">
-                                        <label class="input-group-text w-14" for="search_start_date">Data</label>
+                                        <label class="input-group-text" for="search_start_date">Data
+                                            Inicial</label>
                                         <input class="form-control" type="date" id="search_start_date"
                                                name="search_start_date"
                                                min="2018-01-01" max="2030-12-31" value="{{$search_start_date}}"/>
 
-                                        <label class="input-group-text w-14" for="search_end_date">Data</label>
+                                        <label class="input-group-text" for="search_end_date">Data Final</label>
                                         <input class="form-control" type="date" id="search_end_date"
                                                name="search_end_date"
                                                min="2018-01-01" max="2030-12-31" value="{{$search_end_date}}"/>
@@ -66,72 +67,85 @@
                             </div>
                         </div>
                     </form>
-                    <table class="table table-sm">
-                        <thead>
-                        <tr>
-                            <th scope="col">Placa</th>
-                            <th scope="col">Veiculo</th>
-                            <th scope="col">Tipo</th>
-                            <th scope="col">Data</th>
-                            <th scope="col">Visualizar</th>
-                            <th scope="col"></th>
-                        </tr>
-                        </thead>
-                        <tbody>
-                        @foreach($predictions as $predict)
-                            <form action="/dashboard/update/{{$predict->id}}" method="POST">
-                                @csrf
-                                @method('PUT')
-                                <tr>
-                                    <td>
-                                        <span class="editable" data-field="plate">{{$predict->plate}}</span>
-                                    </td>
-                                    <td>{{$predict->vehicle}}</td>
-                                    <td>{{$predict->type}}</td>
-                                    <td>{{$predict->date}}</td>
-                                    <td>
-                                        <button type="button" class="btn btn-link" data-bs-toggle="modal"
-                                                data-bs-target="#{{$predict->id}}">
-                                            Image
-                                        </button>
+                    <div class="table-responsive table-responsive-xxl">
+                        <table class="table table-sm">
+                            <thead>
+                            <tr>
+                                <th scope="col">Placa</th>
+                                <th scope="col">Veiculo</th>
+                                <th scope="col">Tipo</th>
+                                <th scope="col">Data</th>
+                                <th scope="col"></th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            @foreach($predictions as $predict)
+                                <form action="/dashboard/update/{{$predict->id}}" method="POST">
+                                    @csrf
+                                    @method('PUT')
+                                    <tr>
+                                        <td>
+                                            <span class="editable" data-field="plate">{{$predict->plate}}</span>
+                                        </td>
+                                        <td>{{$predict->vehicle}}</td>
+                                        <td>{{$predict->type}}</td>
+                                        <td>{{$predict->date}}</td>
+                                        <td class="text-right">
 
-                                        <div class="modal fade" id="{{$predict->id}}" tabindex="-1"
-                                             aria-labelledby="exampleModalLabel" aria-hidden="true">
-                                            <div class="modal-dialog modal-dialog-centered">
-                                                <div class="modal-content">
-                                                    <div class="modal-header">
-                                                        <h1 class="modal-title fs-5"
-                                                            id="exampleModalLabel">{{$predict->plate}}</h1>
-                                                        <button type="button" class="btn-close" data-bs-dismiss="modal"
-                                                                aria-label="Close"></button>
+                                            <button type="button" class="btn btn-dark" data-bs-toggle="modal"
+                                                    data-bs-target="#{{$predict->id}}">
+                                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                                                     fill="currentColor" class="bi bi-eye" viewBox="0 0 16 16">
+                                                    <path
+                                                        d="M16 8s-3-5.5-8-5.5S0 8 0 8s3 5.5 8 5.5S16 8 16 8M1.173 8a13 13 0 0 1 1.66-2.043C4.12 4.668 5.88 3.5 8 3.5s3.879 1.168 5.168 2.457A13 13 0 0 1 14.828 8q-.086.13-.195.288c-.335.48-.83 1.12-1.465 1.755C11.879 11.332 10.119 12.5 8 12.5s-3.879-1.168-5.168-2.457A13 13 0 0 1 1.172 8z"/>
+                                                    <path
+                                                        d="M8 5.5a2.5 2.5 0 1 0 0 5 2.5 2.5 0 0 0 0-5M4.5 8a3.5 3.5 0 1 1 7 0 3.5 3.5 0 0 1-7 0"/>
+                                                </svg>
+                                            </button>
+
+                                            <div class="modal fade" id="{{$predict->id}}" tabindex="-1"
+                                                 aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                                <div class="modal-dialog modal-dialog-centered">
+                                                    <div class="modal-content">
+                                                        <div class="modal-header">
+                                                            <h1 class="modal-title fs-5"
+                                                                id="exampleModalLabel">{{$predict->plate}}</h1>
+                                                            <button type="button" class="btn-close"
+                                                                    data-bs-dismiss="modal"
+                                                                    aria-label="Close"></button>
+                                                        </div>
+                                                        <form action="">
+                                                            <div class="modal-body">
+                                                                <div class="form-floating mb-3">
+                                                                    <input type="text" class="form-control"
+                                                                           id="plate-edit" data-field="plate"
+                                                                           name="plate" value="{{$predict->plate}}">
+                                                                    <label for="plate-edit">Placa</label>
+                                                                </div>
+
+                                                                IMAGEM AQUI
+                                                            </div>
+                                                            <div class="modal-footer">
+                                                                <button name="button-salvar" type="submit"
+                                                                        class="save-btn btn btn-success">
+                                                                    Salvar
+                                                                </button>
+                                                                <button type="button" class="btn btn-secondary"
+                                                                        data-bs-dismiss="modal">
+                                                                    Fechar
+                                                                </button>
+                                                            </div>
+                                                        </form>
                                                     </div>
-                                                    <form action="">
-                                                        <div class="modal-body">
-                                                            <input type="text" name="plate"
-                                                                   class="form-control m-auto"
-                                                                   data-field="plate"
-                                                                   value="{{$predict->plate}}">
-                                                            IMAGEM AQUI
-                                                        </div>
-                                                        <div class="modal-footer">
-                                                            <button name="button-salvar" type="submit" class="save-btn btn btn-success">
-                                                                Salvar
-                                                            </button>
-                                                            <button type="button" class="btn btn-secondary"
-                                                                    data-bs-dismiss="modal">
-                                                                Fechar
-                                                            </button>
-                                                        </div>
-                                                    </form>
                                                 </div>
                                             </div>
-                                        </div>
-                                    </td>
-                                </tr>
-                            </form>
-                        @endforeach
-                        </tbody>
-                    </table>
+                                        </td>
+                                    </tr>
+                                </form>
+                            @endforeach
+                            </tbody>
+                        </table>
+                    </div>
                     {{ $predictions->appends(request()->all())->links() }}
                 </div>
             </div>

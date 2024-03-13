@@ -7,3 +7,12 @@ a{
     display: none;
     max-width: 100px;
 }
+
+button:disabled {
+    cursor: no-drop !important;
+}
+
+button:not(:disabled) {
+    cursor: pointer !important;
+}
+

@@ -17,7 +17,13 @@ document.addEventListener('DOMContentLoaded', function () {
 
         inputPlate.addEventListener('input', function () {
             btnSave.disabled = inputPlate.value.trim() === '';
+            if (inputPlate.value.trim() === '') {
+                inputPlate.classList.add("is-invalid");
+            } else {
+                inputPlate.classList.remove("is-invalid");
+            }
         });
+
     });
 });
 

@@ -14,12 +14,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-use App\Http\Controllers\ViewsController;
 use App\Http\Controllers\PredictionsController;
-
-Route::get('/predictions', [PredictionsController::class, 'predictions']);
-
-
 
 Route::middleware([
     'auth:sanctum',
@@ -27,6 +22,7 @@ Route::middleware([
     'verified',
 ])->group(function () {
     Route::get('/', [PredictionsController::class, 'predictions'])->name('dashboard');
+    Route::get('/register', function () {return view('auth/register');})->name('register');
     Route::get('/dashboard', [PredictionsController::class, 'predictions'])->name('dashboard');
     Route::get('/dashboard/search', [PredictionsController::class, 'search'])->name('search');
     Route::put('/dashboard/update/{id}', [PredictionsController::class, 'update']);
