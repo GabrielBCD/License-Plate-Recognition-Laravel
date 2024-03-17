@@ -17,7 +17,7 @@ return new class extends Migration
             $table->string('vehicle');
             $table->string('type');
             $table->dateTime('date');
-            $table->string('photo');
+            $table->longText('photo');
             $table->timestamps();
         });
     }

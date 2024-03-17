@@ -122,8 +122,9 @@
                                                                            name="plate" value="{{$predict->plate}}">
                                                                     <label for="plate-edit">Placa</label>
                                                                 </div>
-
-                                                                IMAGEM AQUI
+                                                                <img src="data:image/png;base64,{{$predict->photo}}"
+                                                                     class="img-fluid"
+                                                                     alt="prediction {{$predict->id}} image">
                                                             </div>
                                                             <div class="modal-footer">
                                                                 <button name="button-salvar" type="submit"
