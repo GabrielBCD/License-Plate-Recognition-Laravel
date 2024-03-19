@@ -12,12 +12,12 @@
 
                 <!-- Navigation Links -->
                 <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
-                    <x-nav-link href="{{ route('dashboard') }}" :active="request()->routeIs('dashboard')">
+                    <x-nav-link href="{{ route('dashboard') }}">
                         {{ __('Dashboard') }}
                     </x-nav-link>
-                    <x-nav-link href="{{ route('log') }}" :active="request()->routeIs('log')">
-                        {{ __('Log') }}
-                    </x-nav-link>
+{{--                    <x-nav-link href="{{ route('log') }}" :active="request()->routeIs('log')">--}}
+{{--                        {{ __('Log') }}--}}
+{{--                    </x-nav-link>--}}
                 </div>
             </div>
 
@@ -103,6 +103,10 @@
 
                             <x-dropdown-link href="{{ route('profile.show') }}">
                                 {{ __('Profile') }}
+                            </x-dropdown-link>
+
+                            <x-dropdown-link href="{{ route('log') }}">
+                                {{ __('System Log') }}
                             </x-dropdown-link>
 
                             @if (Laravel\Jetstream\Jetstream::hasApiFeatures())
