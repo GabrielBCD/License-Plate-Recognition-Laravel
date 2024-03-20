@@ -52,6 +52,24 @@ return [
     */
 
     'channels' => [
+        'table_log' => [
+            'driver' => 'single',
+            'path' => storage_path('logs/Table.log'),
+            'level' => 'debug',
+        ],
+
+        'api_log' => [
+            'driver' => 'single',
+            'path' => storage_path('logs/Api.log'),
+            'level' => 'debug',
+        ],
+
+        'users_log' => [
+            'driver' => 'single',
+            'path' => storage_path('logs/Users.log'),
+            'level' => 'debug',
+        ],
+
         'stack' => [
             'driver' => 'stack',
             'channels' => ['single'],
@@ -89,7 +107,7 @@ return [
             'handler_with' => [
                 'host' => env('PAPERTRAIL_URL'),
                 'port' => env('PAPERTRAIL_PORT'),
-                'connectionString' => 'tls://'.env('PAPERTRAIL_URL').':'.env('PAPERTRAIL_PORT'),
+                'connectionString' => 'tls://' . env('PAPERTRAIL_URL') . ':' . env('PAPERTRAIL_PORT'),
             ],
             'processors' => [PsrLogMessageProcessor::class],
         ],

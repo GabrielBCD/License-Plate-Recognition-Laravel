@@ -13,30 +13,28 @@
                         @csrf
                         <div class="row m-0">
                             <div class="col col-12 col-lg-6">
-                                <div>
-                                    <div class="input-group mb-2">
-                                        <label class="input-group-text w-25" id="inputGroup-sizing-default"
-                                               for="search_plate">Placa</label>
-                                        <input type="text" class="form-control " aria-label="Sizing example input"
-                                               placeholder="ABC-1234"
-                                               aria-describedby="inputGroup-sizing-default" id="search_plate"
-                                               name="search_plate" value="{{$search_plate}}">
-                                    </div>
-                                    <div class="input-group mb-2">
-                                        <label class="input-group-text w-25" for="search_type">Tipo</label>
-                                        <select class="form-select" id="search_type" name="search_type">
-                                            <option value="">Selecione um Tipo</option>
-                                            <option value="Entrada" {{$search_type == "Entrada" ? 'selected' : ''}}>
-                                                Entrada
-                                            </option>
-                                            <option value="Saída" {{$search_type == "Saída" ? 'selected' : ''}}>Saída
-                                            </option>
-                                        </select>
-                                    </div>
+                                <div class="input-group mb-2">
+                                    <label class="input-group-text w-25" id="inputGroup-sizing-default"
+                                           for="search_plate">Placa</label>
+                                    <input type="text" class="form-control " aria-label="Sizing example input"
+                                           placeholder="ABC-1234"
+                                           aria-describedby="inputGroup-sizing-default" id="search_plate"
+                                           name="search_plate" value="{{$search_plate}}">
+                                </div>
+                                <div class="input-group mb-2">
+                                    <label class="input-group-text w-25" for="search_type">Tipo</label>
+                                    <select class="form-select" id="search_type" name="search_type">
+                                        <option value="">Selecione um Tipo</option>
+                                        <option value="Entrada" {{$search_type == "Entrada" ? 'selected' : ''}}>
+                                            Entrada
+                                        </option>
+                                        <option value="Saída" {{$search_type == "Saída" ? 'selected' : ''}}>Saída
+                                        </option>
+                                    </select>
                                 </div>
                             </div>
                             <div class="col col-12 col-lg-6">
-                                <div>
+                                <div class="">
                                     <div class="input-group mb-2">
                                         <label class="input-group-text w-25" for="search_vehicle">Veiculo</label>
                                         <select class="form-select" id="search_vehicle" name="search_vehicle">
@@ -47,17 +45,27 @@
                                             </option>
                                         </select>
                                     </div>
-                                    <div class="input-group mb-2">
-                                        <label class="input-group-text" for="search_start_date">Data
-                                            Inicial</label>
-                                        <input class="form-control" type="date" id="search_start_date"
-                                               name="search_start_date"
-                                               min="2018-01-01" max="2030-12-31" value="{{$search_start_date}}"/>
-
-                                        <label class="input-group-text" for="search_end_date">Data Final</label>
-                                        <input class="form-control" type="date" id="search_end_date"
-                                               name="search_end_date"
-                                               min="2018-01-01" max="2030-12-31" value="{{$search_end_date}}"/>
+                                    <div class="row mb-2">
+                                        <div class="col-12 col-sm-6 mb-2">
+                                            <div class="input-group">
+                                                <label class="input-group-text" for="search_start_date">Data
+                                                    Inicial</label>
+                                                <input class="form-control" type="date" id="search_start_date"
+                                                       name="search_start_date"
+                                                       min="2018-01-01" max="2030-12-31"
+                                                       value="{{$search_start_date}}"/>
+                                            </div>
+                                        </div>
+                                        <div class="col-12 col-sm-6">
+                                            <div class="input-group">
+                                                <label class="input-group-text" for="search_end_date">Data
+                                                    Final</label>
+                                                <input class="form-control" type="date" id="search_end_date"
+                                                       name="search_end_date"
+                                                       min="2018-01-01" max="2030-12-31"
+                                                       value="{{$search_end_date}}"/>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -67,8 +75,8 @@
                             </div>
                         </div>
                     </form>
-                    <div class="table-responsive table-responsive-xxl">
-                        <table class="table table-sm">
+                    <div class="">
+                        <table class="table">
                             <thead>
                             <tr>
                                 <th scope="col">Placa</th>
@@ -84,9 +92,7 @@
                                     @csrf
                                     @method('PUT')
                                     <tr>
-                                        <td>
-                                            <span class="editable" data-field="plate">{{$predict->plate}}</span>
-                                        </td>
+                                        <th>{{$predict->plate}}</th>
                                         <td>{{$predict->vehicle}}</td>
                                         <td>{{$predict->type}}</td>
                                         <td>{{$predict->date}}</td>
@@ -147,8 +153,8 @@
                             </tbody>
                         </table>
                     </div>
-                    {{ $predictions->appends(request()->all())->links() }}
                 </div>
+                {{ $predictions->appends(request()->all())->links() }}
             </div>
         </div>
     </div>
