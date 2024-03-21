@@ -40,7 +40,7 @@ class PredictionsController extends Controller
                 if (strtotime($search_start_date) && strtotime($search_end_date)) {
                     $query->whereBetween('date', [$search_start_date, $search_end_date]);
                 } else {
-                    alert("Datas inválidas"); ;
+                    alert("Datas inválidas");
                 }
             }
         }
@@ -71,7 +71,6 @@ class PredictionsController extends Controller
     {
         try {
             $prediction = Predictions::findOrFail($id);
-
             $user = Auth::user()->name;
             $old = $prediction->plate;
             $new = $request->input('plate');
@@ -82,6 +81,7 @@ class PredictionsController extends Controller
             }
             return redirect()->back();
         } catch (\Exception $e) {
+            log::channel('table_log')->error("User $user tried to change the plate id: $id and failed.");
             return redirect()->back();
         }
     }

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Predictions;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Log;
 
 class ApiController extends Controller
 {
@@ -15,8 +16,10 @@ class ApiController extends Controller
     {
         try {
             $predictions = Predictions::all();
+            Log::channel('api_log')->info("Index function called. Retrieving all records.");
             return response()->json($predictions, 200);
         } catch (\Exception $e) {
+            Log::channel('api_log')->error("Failed to retrieve predictions [500]. Error: $e");
             return response()->json(['error' => 'Failed to retrieve predictions.'], 500);
         }
     }
@@ -36,8 +39,10 @@ class ApiController extends Controller
     {
         try {
             $prediction = Predictions::create($request->all());
+            Log::channel('api_log')->info("Store function called. Storing new record: $request.");
             return response()->json($prediction, 201);
         } catch (\Exception $e) {
+            Log::channel('api_log')->error("Failed to store prediction [500]. Error: $e");
             return response()->json(['error' => 'Failed to store prediction.'], 500);
         }
     }
@@ -49,10 +54,13 @@ class ApiController extends Controller
     {
         try {
             $prediction = Predictions::findOrFail($id);
+            Log::channel('api_log')->info("Show function called. Retrieving record with ID: $id.");
             return response()->json($prediction, 200);
         } catch (ModelNotFoundException $e) {
+            Log::channel('api_log')->error("Prediction not found [404]. Error: $e");
             return response()->json(['error' => 'Prediction not found.'], 404);
         } catch (\Exception $e) {
+            Log::channel('api_log')->error("Failed to retrieve prediction [500]. Error: $e");
             return response()->json(['error' => 'Failed to retrieve prediction.'], 500);
         }
     }
