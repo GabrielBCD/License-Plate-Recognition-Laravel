@@ -9,7 +9,7 @@
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white overflow-hidden shadow-xl sm:rounded-lg">
                 <div class="p-5 panel">
-                    <form action="/dashboard/search" method="GET" class="mb-4">
+                    <form action="/dashboard/search" method="POST" class="mb-4">
                         @csrf
                         <div class="row m-0">
                             <div class="col col-12 col-lg-6">

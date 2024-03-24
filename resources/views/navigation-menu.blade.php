@@ -12,12 +12,14 @@
 
                 <!-- Navigation Links -->
                 <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
-                    <x-nav-link href="{{ route('dashboard') }}">
+                    <x-nav-link href="{{ route('dashboard') }}" :active="request()->routeIs('dashboard')">
                         {{ __('Dashboard') }}
                     </x-nav-link>
-{{--                    <x-nav-link href="{{ route('log') }}" :active="request()->routeIs('log')">--}}
-{{--                        {{ __('Log') }}--}}
-{{--                    </x-nav-link>--}}
+                    @if(Auth()->user()->usertype == 'admin')
+                    <x-nav-link href="{{ route('users') }}" :active="request()->routeIs('users')">
+                        {{ __('Usuários') }}
+                    </x-nav-link>
+                    @endif
                 </div>
             </div>
 
@@ -104,10 +106,11 @@
                             <x-dropdown-link href="{{ route('profile.show') }}">
                                 {{ __('Profile') }}
                             </x-dropdown-link>
-
+                            @if(Auth()->user()->usertype == "admin")
                             <x-dropdown-link href="{{ route('log') }}">
                                 {{ __('Log') }}
                             </x-dropdown-link>
+                            @endif
 
                             @if (Laravel\Jetstream\Jetstream::hasApiFeatures())
                                 <x-dropdown-link href="{{ route('api-tokens.index') }}">
@@ -170,10 +173,11 @@
                 <x-responsive-nav-link href="{{ route('profile.show') }}" :active="request()->routeIs('profile.show')">
                     {{ __('Profile') }}
                 </x-responsive-nav-link>
-
+                @if(Auth()->user()->usertype == "admin")
                 <x-responsive-nav-link href="{{ route('log') }}">
                     {{ __('Log') }}
                 </x-responsive-nav-link>
+                @endif
 
                 @if (Laravel\Jetstream\Jetstream::hasApiFeatures())
                     <x-responsive-nav-link href="{{ route('api-tokens.index') }}" :active="request()->routeIs('api-tokens.index')">

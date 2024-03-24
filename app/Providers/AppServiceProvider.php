@@ -28,10 +28,7 @@ class AppServiceProvider extends ServiceProvider
         Paginator::useBootstrapFive();
 
         LogViewer::auth(function ($request) {
-            return $request->user()
-                && in_array($request->user()->email, [
-                    'gabrielmpxx@gmail.com',
-                ]);
+            return $request->user() && $request->user()->usertype == 'admin';
         });
 
         Gate::define('deleteLogFile', function (?User $user, LogFile $file) {
