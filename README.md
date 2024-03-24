@@ -39,18 +39,29 @@ git clone https://github.com/GabrielBCD/License-Plate-Recognition-Laravel
 composer install
 ```
 
-3. Configure o arquivo `.env` com as informações do banco de dados.
-
-4. Execute as migrações do banco de dados:
+3. Instale as dependências JavaScript do projeto:
 ```bash
-php artisan migrate
+npm install
 ```
 
-5. Execute o servidor Laravel:
+4. Configure o arquivo `.env` com as informações do banco de dados.
+
+5. Execute as migrações do banco de dados e insira dados iniciais:
+```bash
+php artisan migrate --seed
+```
+
+6. Execute o servidor de desenvolvimento do Laravel:
+```bash
+npm run dev
+```
+
+7. Execute o servidor Laravel:
 ```bash
 php artisan serve
 ```
-6. Abra o navegador e acesse o endereço `http://localhost:8000` para utilizar o site.
+
+8. Abra o navegador e acesse o endereço `http://localhost:8000` para utilizar o site.
 
 ## Uso
 
@@ -58,6 +69,10 @@ php artisan serve
 2. Visualize as informações das placas veiculares reconhecidas.
 3. Edite as informações associadas a cada placa, se necessário.
 4. As alterações feitas serão atualizadas automaticamente.
+
+Observação: Um usuário de administração já está pré-criado para fins de teste:
+   - Email: admin@admin.com
+   - Senha: admin
 
 ## Licensa
 
