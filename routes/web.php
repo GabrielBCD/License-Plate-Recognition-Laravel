@@ -18,7 +18,7 @@ use App\Http\Controllers\PredictionsController;
 */
 
 
-Route::get('/register', function () {return view('auth/register');})->name('register');
+
 
 Route::middleware([
     'auth:sanctum',
@@ -36,5 +36,8 @@ Route::middleware([
     Route::get('/users', [AdminController::class, 'index'])->name('users');
     Route::post('/users/create', [UserController::class, 'store'])->name('create-user');
     Route::post('/users/delete/{id}', [UserController::class, 'destroy'])->name('create-user');
+
+    //Não utilizada
+    Route::get('/register', function () {return view('auth/register');})->name('register');
 
 });
