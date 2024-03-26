@@ -72,15 +72,21 @@ class PredictionsController extends Controller
         try {
             $prediction = Predictions::findOrFail($id);
             $user = Auth::user()->name;
-            $old = $prediction->plate;
-            $new = $request->input('plate');
-            if ($old != $new){
-                Log::channel('table_log')->info("User $user edited the table. Plate id: $id - Plate $old to $new.");
-                $prediction->plate = $request->input('plate');
-                $prediction->save();
-            }
+
+            $old_plate = $prediction->plate;
+            $new_plate = $request->input('plate');
+
+            $old_vehicle = $prediction->vehicle;
+            $new_vehicle = $request->input('vehicle');
+
+            Log::channel('table_log')->info("User $user edited the table. Plate id: $id - Plate $old_plate to $new_plate. Vehicle $old_vehicle to $new_vehicle");
+
+            $prediction->plate = $request->input('plate');
+            $prediction->vehicle = $request->input('vehicle');
+            $prediction->save();
             return redirect()->back();
         } catch (\Exception $e) {
+            $user = Auth::user()->name;
             log::channel('table_log')->error("User $user tried to change the plate id: $id and failed.");
             return redirect()->back();
         }

@@ -35,9 +35,10 @@ Route::middleware([
     Route::get('/log', function () {return view('log');})->name('log');
     Route::get('/users', [AdminController::class, 'index'])->name('users');
     Route::post('/users/create', [UserController::class, 'store'])->name('create-user');
-    Route::post('/users/delete/{id}', [UserController::class, 'destroy'])->name('create-user');
+    Route::post('/users/update/{id}', [UserController::class, 'update'])->name('create-user');
+    Route::post('/users/delete/{id}', [UserController::class, 'destroy'])->name('destroy-user');
 
     //Não utilizada
-    Route::get('/register', function () {return view('auth/register');})->name('register');
+    Route::get('/register', function () {return redirect()->back();})->name('register');
 
 });

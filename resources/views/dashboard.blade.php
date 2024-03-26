@@ -25,10 +25,11 @@
                                     <label class="input-group-text w-25" for="search_type">Tipo</label>
                                     <select class="form-select" id="search_type" name="search_type">
                                         <option value="">Selecione um Tipo</option>
-                                        <option value="Entrada" {{$search_type == "Entrada" ? 'selected' : ''}}>
+                                        <option value="entry" {{$search_type == "entry" ? 'selected' : ''}}>
                                             Entrada
                                         </option>
-                                        <option value="Saída" {{$search_type == "Saída" ? 'selected' : ''}}>Saída
+                                        <option value="exit" {{$search_type == "exit" ? 'selected' : ''}}>
+                                            Saída
                                         </option>
                                     </select>
                                 </div>
@@ -39,9 +40,14 @@
                                         <label class="input-group-text w-25" for="search_vehicle">Veiculo</label>
                                         <select class="form-select" id="search_vehicle" name="search_vehicle">
                                             <option value="">Selecione um Veículo</option>
-                                            <option value="Carro" {{$search_vehicle == "Carro" ? 'selected' : ''}}>Carro
+                                            <option value="car" {{$search_vehicle == "car" ? 'selected' : ''}}>
+                                                Carro
                                             </option>
-                                            <option value="Moto" {{$search_vehicle == "Moto" ? 'selected' : ''}}>Moto
+                                            <option value="bus" {{$search_vehicle == "bus" ? 'selected' : ''}}>
+                                                Ônibus
+                                            </option>
+                                            <option value="motorcycle" {{$search_vehicle == "motorcycle" ? 'selected' : ''}}>
+                                                Moto
                                             </option>
                                         </select>
                                     </div>
@@ -93,8 +99,24 @@
                                     @method('PUT')
                                     <tr>
                                         <th>{{$predict->plate}}</th>
-                                        <td>{{$predict->vehicle}}</td>
-                                        <td>{{$predict->type}}</td>
+                                        <td>
+                                            @if($predict->vehicle == "car")
+                                                Carro
+                                            @elseif($predict->vehicle == "bus")
+                                                Ônibus
+                                            @elseif($predict->vehicle == "motorcycle")
+                                                Moto
+                                            @else
+                                                {{$predict->vehicle}}
+                                            @endif
+                                        </td>
+                                        <td>
+                                            @if($predict->type == "entry")
+                                                Entrada
+                                            @elseif($predict->type == "exit")
+                                                Saída
+                                            @endif
+                                        </td>
                                         <td>{{$predict->date}}</td>
                                         <td class="text-right">
 
@@ -128,6 +150,19 @@
                                                                            name="plate" value="{{$predict->plate}}">
                                                                     <label for="plate-edit">Placa</label>
                                                                 </div>
+
+                                                                <div class="form-floating mb-3">
+                                                                    <select class="form-select" id="edit-vehicle" name="vehicle">
+                                                                        <option value="car" {{($predict->vehicle) == "car" ? 'selected' : ''}}>Carro
+                                                                        </option>
+                                                                        <option value="bus" {{$predict->vehicle == "bus" ? 'selected' : ''}}>Ônibus
+                                                                        </option>
+                                                                        <option value="motorcycle" {{$predict->vehicle == "motorcycle" ? 'selected' : ''}}>Moto
+                                                                        </option>
+                                                                    </select>
+                                                                    <label class="form-floating" for="edit-vehicle">Veiculo</label>
+                                                                </div>
+
                                                                 <img src="data:image/png;base64,{{$predict->photo}}"
                                                                      class="img-fluid"
                                                                      alt="prediction {{$predict->id}} image">
